@@ -11,12 +11,18 @@ export class ChatComponent implements OnInit {
   messageContent = '';
   sender = 'User';
 
-  constructor(private chatService: ChatService) {}
+  constructor(private chatService: ChatService) {
+    console.log('ChatService injected:', chatService);
+  }
 
   ngOnInit(): void {
+    console.log('ChatComponent initialized');
+    console.log('Connecting to WebSocket...');
     this.chatService.connect();
     this.messages = this.chatService.getMessages();
-  }
+    console.log('Initial messages:', this.messages);
+}
+
 
   sendMessage(): void {
     if (this.messageContent.trim()) {
