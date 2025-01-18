@@ -6,20 +6,18 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-import io.micrometer.common.lang.NonNull;
-
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
-    public void configureMessageBroker(@NonNull MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic"); // Enable topic-based messaging
-        config.setApplicationDestinationPrefixes("/app"); // Prefix for sending messages
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        config.enableSimpleBroker("/topic"); // Enables a simple in-memory message broker
+        config.setApplicationDestinationPrefixes("/app"); // Prefix for messages sent from client
     }
 
     @Override
-    public void registerStompEndpoints(@NonNull StompEndpointRegistry registry) {
-        registry.addEndpoint("/chat").withSockJS(); // WebSocket endpoint
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/chat").setAllowedOrigins("http://localhost:4200").withSockJS();
     }
 }
