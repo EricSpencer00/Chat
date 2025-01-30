@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Welcome to the Chat Application</h1>
+    <div id="chat-container">
+        <div id="chat-messages">
+            <!-- Top message from the database will be displayed here -->
+            <div id="top-message">
+                <!-- Display the top message here -->
+            </div>
+        </div>
+        <div id="chat-input">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Update the current message
+        function updateMessage() {
+            var messageInput = document.getElementById("message-input");
+            var topMessage = document.getElementById("top-message");
+            topMessage.innerHTML = messageInput.value;
+        }
+
+        var sendButton = document.getElementById("send-button");
+        sendButton.addEventListener("click", updateMessage);
+    </script>
+</body>
+</html>
