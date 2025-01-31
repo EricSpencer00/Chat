@@ -1,2 +1,11 @@
-<button (click)="postMessage()">Send Message</button>
-<p>{{ message }}</p>
+<div id="chat-container">
+    <div id="chat-messages">
+        <div id="top-message" class="fade-effect">
+            {{ message }}
+        </div>
+    </div>
+    <div id="chat-input">
+        <input type="text" [(ngModel)]="messageInput" placeholder="Type your message...">
+        <button (click)="sendMessage()">Send</button>
+    </div>
+</div>

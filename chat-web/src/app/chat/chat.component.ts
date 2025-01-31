@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './chat.component.html',
-  styleUrl: './chat.component.css'
+  styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
   message: string = '';
-
-  constructor(private http: HttpClient) {}
+  messageInput: string = '';
 
   sendMessage() {
-    this.http.post('http://localhost:3000/message', { message: this.message })
-      .subscribe((response) => {
-        console.log(response);
-      });
+    this.message = this.messageInput.trim();
+    this.messageInput = ''; // Clear input after sending
   }
 }
