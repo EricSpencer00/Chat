@@ -1,36 +1,44 @@
-package com.example.chat;
+package com.example.chat;  // Ensure this matches your project's package structure
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;  
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity  // Make sure this annotation is present
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String username;
     private String email;
 
-    // Default constructor required by JPA
-    public User() {
-    }
+    // Default constructor (Required for JPA)
+    public User() {}
 
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
-
+    // Getters and Setters
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
