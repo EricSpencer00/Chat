@@ -1,13 +1,18 @@
 package com.example.chat.api;
 
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import com.example.chat.model.Person;
 import com.example.chat.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @Controller
 public class PersonController {
@@ -26,7 +31,7 @@ public class PersonController {
 
     @GetMapping("/{id}")
     public Person getPerson(UUID id) {
-        return personService.getPerson(id).orElse(null);
+        return personService.getPerson(id) != null ? personService.getPerson(id) : null;
     }
     
     @PutMapping("/{id}")

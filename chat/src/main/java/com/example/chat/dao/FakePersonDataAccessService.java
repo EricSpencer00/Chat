@@ -2,9 +2,8 @@ package com.example.chat.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Stream;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,7 @@ import com.example.chat.model.Person;
 @Repository("fakeDao")
 public class FakePersonDataAccessService implements PersonDao{
 
-    private static List<Person> DB = new ArrayList<>();
+    private final static List<Person> DB = new ArrayList<>();
 
     @Override
     public int insertPerson(UUID id, Person person) {
@@ -30,22 +29,22 @@ public class FakePersonDataAccessService implements PersonDao{
 
     @Override
     public int updatePerson(UUID id, Person person) {
-        return selectPersonById(id)
-                .map(p -> {
-                    int indexOfPersonToUpdate = DB.indexOf(p);
-                    if (indexOfPersonToUpdate >= 0) {
-                        DB.set(indexOfPersonToUpdate, new Person(id, person.getName()));
-                        return 1;
-                    }
-                    return 0;
-                })
-                != null ? 1 : 0;
+        Optional<Person> personMaybe = (Optional<Person>) selectPersonById(id);
+
+        if (personMaybe.isPresent()) {
+            int indexOfPersonToUpdate = DB.indexOf(personMaybe.get());
+            if (indexOfPersonToUpdate >= 0) {
+                DB.set(indexOfPersonToUpdate, new Person(id, person.getName()));
+                return 1;
+            }
+        }
+        return 0;
     }
 
     @Override
     public int deletePerson(UUID id) {
-        Object personMaybe = selectPersonById(id);
-        if (personMaybe.isEmpty()) {
+        Optional<Person> personMaybe = (Optional<Person>) selectPersonById(id);
+        if (!personMaybe.isPresent()) {
             return 0;
         }
         DB.remove(personMaybe.get());
