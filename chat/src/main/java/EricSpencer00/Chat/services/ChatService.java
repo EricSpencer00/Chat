@@ -24,15 +24,15 @@ public class ChatService {
     }
 
     public Message sendMessage(Long senderId, Long groupId, String content) {
-        User sender = UserRepository.findById(senderId).orElseThrow();
-        ChatGroup chatGroup = GroupRepository.findById(groupId).orElseThrow();
+        User sender = userRepository.findById(senderId).orElseThrow();
+        ChatGroup chatGroup = groupRepository.findById(groupId).orElseThrow();
 
         Message message = new Message(null, sender, chatGroup, content, LocalDateTime.now());
         return messageRepository.save(message);
     }
 
     public List<Message> getMessages(Long groupId) {
-        ChatGroup chatGroup = GroupRepository.findById(groupId).orElseThrow();
+        ChatGroup chatGroup = groupRepository.findById(groupId).orElseThrow();
         return messageRepository.findByGroupChat(chatGroup);
     }
 }
