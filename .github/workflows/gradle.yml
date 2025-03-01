@@ -22,10 +22,10 @@ jobs:
         cache: gradle
 
     - name: Grant execute permission for Gradle wrapper
-      run: chmod +x gradlew
+      run: chmod +x Chat/gradlew
 
     - name: Build with Gradle
-      run: ./gradlew build --no-daemon
+      run: Chat/gradlew build --no-daemon
 
     # Optional: Uploads the full dependency graph to GitHub for security alerts
     - name: Update dependency graph
