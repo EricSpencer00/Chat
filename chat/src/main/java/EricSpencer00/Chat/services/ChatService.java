@@ -33,6 +33,6 @@ public class ChatService {
 
     public List<Message> getMessages(Long groupId) {
         ChatGroup chatGroup = groupRepository.findById(groupId).orElseThrow();
-        return messageRepository.findByGroupChat(chatGroup);
+        return messageRepository.findByChatGroup(chatGroup);
     }
 }

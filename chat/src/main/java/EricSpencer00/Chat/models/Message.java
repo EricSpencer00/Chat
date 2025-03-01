@@ -25,4 +25,11 @@ public class Message {
     private String content;
 
     private LocalDateTime timestamp;
+
+    public Message(User sender, ChatGroup chatGroup, String content, LocalDateTime timestamp) {
+        this.sender = sender;
+        this.chatGroup = chatGroup;
+        this.content = content;
+        this.timestamp = timestamp;
+    }
 }
