@@ -23,7 +23,7 @@ public class UserController {
 
     @PostMapping("/create")
     public User createUser(@RequestParam String username) {
-        return userRepository.save(new User(null, username, null));
+        return userRepository.save(new User(username));
     }
 
     @GetMapping

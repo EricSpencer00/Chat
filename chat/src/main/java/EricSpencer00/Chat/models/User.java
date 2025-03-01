@@ -19,4 +19,8 @@ public class User {
 
     @ManyToMany(mappedBy = "members")
     private List<ChatGroup> chatGroups;
+
+    public User(String username) {
+        this.username = username;
+    }
 }

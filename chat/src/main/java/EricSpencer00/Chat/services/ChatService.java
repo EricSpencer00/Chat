@@ -1,5 +1,8 @@
 package EricSpencer00.Chat.services;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import EricSpencer00.Chat.models.ChatGroup;
@@ -8,8 +11,6 @@ import EricSpencer00.Chat.models.User;
 import EricSpencer00.Chat.repositories.GroupRepository;
 import EricSpencer00.Chat.repositories.MessageRepository;
 import EricSpencer00.Chat.repositories.UserRepository;
-import java.util.List;
-import java.time.LocalDateTime;
 
 @Service
 public class ChatService {
@@ -27,7 +28,7 @@ public class ChatService {
         User sender = userRepository.findById(senderId).orElseThrow();
         ChatGroup chatGroup = groupRepository.findById(groupId).orElseThrow();
 
-        Message message = new Message(null, sender, chatGroup, content, LocalDateTime.now());
+        Message message = new Message(sender, chatGroup, content, LocalDateTime.now());
         return messageRepository.save(message);
     }
 
