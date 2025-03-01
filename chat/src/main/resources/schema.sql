@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS messages (
     FOREIGN KEY (group_id) REFERENCES chat_groups(id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS user_chat_groups (
+CREATE TABLE IF NOT EXISTS group_users (
     user_id BIGINT NOT NULL,
     group_id BIGINT NOT NULL,
     PRIMARY KEY (user_id, group_id),
