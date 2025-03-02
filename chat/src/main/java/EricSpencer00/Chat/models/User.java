@@ -23,4 +23,28 @@ public class User {
     public User(String username) {
         this.username = username;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<ChatGroup> getChatGroups() {
+        return chatGroups;
+    }
+
+    public void setChatGroups(List<ChatGroup> chatGroups) {
+        this.chatGroups = chatGroups;
+    }
 }

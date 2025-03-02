@@ -25,8 +25,9 @@ public class ChatService {
     }
 
     public Message sendMessage(Long senderId, Long groupId, String content) {
-        User sender = userRepository.findById(senderId).orElseThrow();
-        ChatGroup chatGroup = groupRepository.findById(groupId).orElseThrow();
+        User sender = userRepository.findById(senderId).orElseThrow(() -> new RuntimeException("User not found"));
+        ChatGroup chatGroup = groupRepository.findById(groupId).orElseThrow(() -> new RuntimeException("Group not found"));
+
 
         Message message = new Message(sender, chatGroup, content, LocalDateTime.now());
         return messageRepository.save(message);

@@ -9,4 +9,6 @@ import EricSpencer00.Chat.models.Message;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
     List<Message> findByChatGroup(ChatGroup chatGroup);
+
+    // void deleteByChatGroupId(Long chatGroupId);
 }

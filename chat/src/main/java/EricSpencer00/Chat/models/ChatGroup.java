@@ -24,4 +24,35 @@ public class ChatGroup {
     )
 
     private List<User> members;
+
+    // create getters and setters
+
+    public ChatGroup(String name, List<User> members) {
+        this.name = name;
+        this.members = members;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<User> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<User> members) {
+        this.members = members;
+    }
 }
