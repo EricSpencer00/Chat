@@ -1,6 +1,9 @@
 package EricSpencer00.Chat.controllers;
 
-import org.springframework.web.bind.annotation.PathVariable;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,24 +17,24 @@ import EricSpencer00.Chat.repositories.UserRepository;
 @RestController
 @RequestMapping("/groups")
 public class GroupController {
-    private final GroupRepository groupRepository;
-    private final UserRepository userRepository;
+    @Autowired
+    private GroupRepository groupRepository;
 
-    public GroupController(GroupRepository groupRepository, UserRepository userRepository) {
-        this.groupRepository = groupRepository;
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/create")
-    public ChatGroup createGroup(@RequestParam String name) {
-        return groupRepository.save(new ChatGroup(name, null));
-    }
+    public ResponseEntity<ChatGroup> createGroup(@RequestParam String name, @RequestParam List<Long> userIds) {
+        groupRepository.createGroup(name);
 
-    @PostMapping("/{groupId}/addUser/{userId}") 
-    public ChatGroup addUserToGroup(@PathVariable Long groupId, @PathVariable long userId) {
-        ChatGroup group = groupRepository.findById(groupId).orElseThrow();
-        User user = userRepository.findById(userId).orElseThrow();
-        group.getMembers().add(user);
-        return groupRepository.save(group);
+        // Retrieve the newly created group
+        ChatGroup chatGroup = groupRepository.findByName(name);
+        
+        // Add users to the group
+        List<User> users = userRepository.findAllById(userIds);
+        chatGroup.setMembers(users);
+        groupRepository.save(chatGroup);
+
+        return ResponseEntity.ok(chatGroup);
     }
 }

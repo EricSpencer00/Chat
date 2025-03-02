@@ -18,4 +18,11 @@ public interface GroupRepository extends JpaRepository<ChatGroup, Long> {
     @Transactional
     @Query ("UPDATE ChatGroup g SET g.members = :user WHERE g.id = :groupId")
     void addUserToGroup(Long groupId, Long userId);
+
+    @Modifying
+    @Transactional
+    @Query ("UPDATE ChatGroup g SET g.members = :user WHERE g.id = :groupId")
+    void removeUserFromGroup(Long groupId, Long userId);
+
+    ChatGroup findByName(String name);
 }
