@@ -25,10 +25,10 @@ jobs:
         cache: gradle
 
     - name: Grant execute permission for Gradle wrapper
-      run: chmod +x Chat/Chat/gradlew
+      run: chmod +x ./Chat/gradlew
 
     - name: Build with Gradle
-      run: Chat/Chat/gradlew build --no-daemon
+      run: ./Chat/gradlew build --no-daemon
 
     - name: Update dependency graph
       uses: gradle/actions/dependency-submission@v3
