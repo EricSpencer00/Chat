@@ -25,7 +25,7 @@ jobs:
         cache: gradle
 
     - name: Grant execute permission for Gradle wrapper
-      run: chmod +x Chat/gradlew
+      run: chmod +x chat/gradlew
 
     - name: Move into the Gradle project directory
       run: cd Chat && ./gradlew build --no-daemon
