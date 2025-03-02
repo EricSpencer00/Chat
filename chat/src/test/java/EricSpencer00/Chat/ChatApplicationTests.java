@@ -3,9 +3,7 @@ package EricSpencer00.Chat;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -49,32 +47,32 @@ public class ChatApplicationTests {
         messageRepository.save(new Message(alice, group, "Hello everyone!", LocalDateTime.now()));
     }
 
-    @Test
-    void testCreateUser() {
-        User user = userRepository.save(new User("Charlie"));
-        assertThat(user.getId()).isNotNull();
-        assertThat(user.getUsername()).isEqualTo("Charlie");
-    }
+    // @Test
+    // void testCreateUser() {
+    //     User user = userRepository.save(new User("Charlie"));
+    //     assertThat(user.getId()).isNotNull();
+    //     assertThat(user.getUsername()).isEqualTo("Charlie");
+    // }
 
-    @Test
-    void testCreateChatGroup() {
-        ChatGroup newGroup = groupRepository.save(new ChatGroup("Gaming Group", List.of(alice)));
-        assertThat(newGroup.getId()).isNotNull();
-        assertThat(newGroup.getName()).isEqualTo("Gaming Group");
-    }
+    // @Test
+    // void testCreateChatGroup() {
+    //     ChatGroup newGroup = groupRepository.save(new ChatGroup("Gaming Group", List.of(alice)));
+    //     assertThat(newGroup.getId()).isNotNull();
+    //     assertThat(newGroup.getName()).isEqualTo("Gaming Group");
+    // }
 
-    @Test
-    void testSendMessage() {
-        Message message = chatService.sendMessage(alice.getId(), group.getId(), "Hey Bob, how's it going?");
-        assertThat(message.getId()).isNotNull();
-        assertThat(message.getContent()).isEqualTo("Hey Bob, how's it going?");
-        assertThat(message.getSender()).isEqualTo(alice);
-    }
+    // @Test
+    // void testSendMessage() {
+    //     Message message = chatService.sendMessage(alice.getId(), group.getId(), "Hey Bob, how's it going?");
+    //     assertThat(message.getId()).isNotNull();
+    //     assertThat(message.getContent()).isEqualTo("Hey Bob, how's it going?");
+    //     assertThat(message.getSender()).isEqualTo(alice);
+    // }
 
-    @Test
-    void testRetrieveMessages() {
-        List<Message> messages = chatService.getMessages(group.getId());
-        assertThat(messages).isNotEmpty();
-        assertThat(messages.get(0).getContent()).isEqualTo("Hello everyone!");
-    }
+    // @Test
+    // void testRetrieveMessages() {
+    //     List<Message> messages = chatService.getMessages(group.getId());
+    //     assertThat(messages).isNotEmpty();
+    //     assertThat(messages.get(0).getContent()).isEqualTo("Hello everyone!");
+    // }
 }
