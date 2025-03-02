@@ -1,16 +1,15 @@
 package EricSpencer00.Chat.controllers;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import EricSpencer00.Chat.repositories.GroupRepository;
-import EricSpencer00.Chat.repositories.UserRepository;
 import EricSpencer00.Chat.models.ChatGroup;
 import EricSpencer00.Chat.models.User;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PathVariable;
+import EricSpencer00.Chat.repositories.GroupRepository;
+import EricSpencer00.Chat.repositories.UserRepository;
 
 @RestController
 @RequestMapping("/groups")
@@ -25,7 +24,7 @@ public class GroupController {
 
     @PostMapping("/create")
     public ChatGroup createGroup(@RequestParam String name) {
-        return groupRepository.save(new ChatGroup(null, name, null));
+        return groupRepository.save(new ChatGroup(name, null));
     }
 
     @PostMapping("/{groupId}/addUser/{userId}") 
