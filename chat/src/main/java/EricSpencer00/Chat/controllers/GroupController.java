@@ -29,6 +29,9 @@ public class GroupController {
 
         // Retrieve the newly created group
         ChatGroup chatGroup = groupRepository.findByName(name);
+        if (chatGroup == null) {
+            throw new RuntimeException("ChatGroup with name " + name + " was not found!");
+        }
         
         // Add users to the group
         List<User> users = userRepository.findAllById(userIds);
@@ -37,4 +40,6 @@ public class GroupController {
 
         return ResponseEntity.ok(chatGroup);
     }
+
+    
 }
