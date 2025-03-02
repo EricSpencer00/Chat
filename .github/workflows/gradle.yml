@@ -31,6 +31,6 @@ jobs:
       working-directory: chat
       run: ../chat/gradlew build --no-daemon
 
-    - name: Update dependency graph
-      working-directory: chat
-      run: ../chat/gradlew generateDependencyGraph
+    # - name: Update dependency graph
+    #   working-directory: chat
+    #   run: ../chat/gradlew generateDependencyGraph
