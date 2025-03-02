@@ -32,4 +32,5 @@ jobs:
       run: ../chat/gradlew build --no-daemon
 
     - name: Update dependency graph
-      uses: gradle/actions/dependency-submission@v3
+      working-directory: chat
+      run: ../chat/gradlew generateDependencyGraph
