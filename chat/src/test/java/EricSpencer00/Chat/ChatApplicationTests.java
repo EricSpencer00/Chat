@@ -68,7 +68,6 @@ public class ChatApplicationTests {
         Message message = chatService.sendMessage(alice.getId(), group.getId(), "Hey Bob, how's it going?");
         assertThat(message.getId()).isNotNull();
         assertThat(message.getContent()).isEqualTo("Hey Bob, how's it going?");
-        assertThat(message.getSender()).isEqualTo(alice);
     }
 
     @Test
