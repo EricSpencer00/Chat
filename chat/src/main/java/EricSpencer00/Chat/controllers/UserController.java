@@ -7,6 +7,7 @@ import EricSpencer00.Chat.models.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
@@ -22,8 +23,10 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public User createUser(@RequestParam String username) {
-        return userRepository.save(new User(username));
+    public User createUser(@RequestParam String username, @RequestParam String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String hashedPassword = encoder.encode(password);
+        return userRepository.save(new User(username, hashedPassword));
     }
 
     @GetMapping

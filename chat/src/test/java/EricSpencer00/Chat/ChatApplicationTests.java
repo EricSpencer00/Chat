@@ -43,8 +43,8 @@ public class ChatApplicationTests {
         userRepository.deleteAll();
 
         // Create Users
-        alice = userRepository.save(new User("Alice"));
-        bob = userRepository.save(new User("Bob"));
+        alice = userRepository.save(new User("Alice", "password"));
+        bob = userRepository.save(new User("Bob", "password"));
 
         // Create Group
         group = groupRepository.save(new ChatGroup("Study Group", List.of(alice, bob)));
@@ -55,7 +55,7 @@ public class ChatApplicationTests {
 
     @Test
     void testCreateUser() {
-        User user = userRepository.save(new User("Charlie"));
+        User user = userRepository.save(new User("Charlie", "password"));
         assertThat(user.getId()).isNotNull();
         assertThat(user.getUsername()).isEqualTo("Charlie");
     }
