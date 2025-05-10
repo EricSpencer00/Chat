@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.stream.Collectors;
 import EricSpencer00.Chat.models.Message;
 import EricSpencer00.Chat.services.ChatService;
 
@@ -29,5 +29,12 @@ public class MessageController {
     @GetMapping("/group/{groupId}")
     public List<Message> getMessages(@PathVariable Long groupId) {
         return chatService.getMessages(groupId);
+    }
+
+    @GetMapping("/group/{groupId}/messages")
+    public List<MessageDTO> getMessagesDTO(@PathVariable Long groupId) {
+        return chatService.getMessages(groupId).stream()
+                .map(MessageDTO::fromMessage)
+                .collect(Collectors.toList());
     }
 }
